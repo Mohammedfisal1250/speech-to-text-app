@@ -27,8 +27,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
+        python -m pip install --upgrade pip
         source venv/bin/activate
         pip install kivy buildozer
+        pip install Cython  # Ensure Cython is installed
 
     - name: Build APK
       run: |
