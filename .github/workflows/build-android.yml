@@ -26,17 +26,15 @@ jobs:
     - name: Install Android SDK
       run: |
         sudo apt-get update
-        sudo apt-get install -y openjdk-11-jdk
-        sudo apt-get install -y unzip
+        sudo apt-get install -y openjdk-11-jdk unzip
         mkdir -p ~/android-sdk/cmdline-tools
-        wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
-        unzip commandlinetools-linux-8512546_latest.zip -d ~/android-sdk/cmdline-tools
-        export ANDROID_HOME=~/android-sdk
-        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-        echo "export ANDROID_HOME=~/android-sdk" >> $GITHUB_ENV
-        echo "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
-        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
+        wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -P ~/android-sdk/cmdline-tools
+        unzip ~/android-sdk/cmdline-tools/commandlinetools-linux-8512546_latest.zip -d ~/android-sdk/cmdline-tools
+        echo "ANDROID_HOME=~/android-sdk" >> $GITHUB_ENV
+        echo "PATH=$PATH:~/android-sdk/cmdline-tools/tools/bin:~/android-sdk/cmdline-tools/tools/bin" >> $GITHUB_ENV
+        source ~/.bashrc
+        yes | ~/android-sdk/cmdline-tools/tools/bin/sdkmanager --licenses
+        ~/android-sdk/cmdline-tools/tools/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
 
     - name: Install dependencies
       run: |
