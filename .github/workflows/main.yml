@@ -23,7 +23,13 @@ jobs:
         python-version: '3.8'  # Ensure the Python version you need.
 
 
-
+    - name: Install Android SDK
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y openjdk-11-jdk
+        sudo apt-get install -y android-sdk
+        yes | sdkmanager --licenses
+        sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
     - name: Install dependencies
       run: |
         python -m venv venv
