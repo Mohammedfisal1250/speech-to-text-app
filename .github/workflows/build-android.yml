@@ -33,8 +33,10 @@ jobs:
         unzip commandlinetools-linux-8512546_latest.zip -d ~/android-sdk/cmdline-tools
         export ANDROID_HOME=~/android-sdk
         export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-        yes | sdkmanager --licenses
-        sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
+        echo "export ANDROID_HOME=~/android-sdk" >> $GITHUB_ENV
+        echo "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_ENV
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
 
     - name: Install dependencies
       run: |
