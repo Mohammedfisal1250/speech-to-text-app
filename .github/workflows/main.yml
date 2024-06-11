@@ -15,12 +15,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v3  # This action is usually fine as it does not depend on Node.js.
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'  # Specify the Python version you use
+        python-version: '3.8'  # Ensure the Python version you need.
+
 
     - name: Install dependencies
       run: |
