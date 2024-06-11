@@ -22,9 +22,7 @@ jobs:
       with:
         python-version: '3.8'  # Ensure the Python version you need.
    
-    - name: List SDK Tools Directory
-      run: |
-        ls -l ~/android-sdk/cmdline-tools/tools/bin
+
     
     - name: Install Android SDK
       run: |
@@ -34,12 +32,12 @@ jobs:
         wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -P ~/android-sdk/cmdline-tools
         unzip ~/android-sdk/cmdline-tools/commandlinetools-linux-8512546_latest.zip -d ~/android-sdk/cmdline-tools
         echo "ANDROID_HOME=~/android-sdk" >> $GITHUB_ENV
-        echo "PATH=$PATH:~/android-sdk/cmdline-tools/tools/bin" >> $GITHUB_ENV
+        echo "PATH=$PATH:~/android-sdk/cmdline-tools/cmdline-tools/latest/bin" >> $GITHUB_ENV
         source ~/.bashrc
-        echo "y" | ~/android-sdk/cmdline-tools/tools/bin/sdkmanager --licenses
-        ~/android-sdk/cmdline-tools/tools/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
+        echo "y" | ~/android-sdk/cmdline-tools/cmdline-tools/latest/bin/sdkmanager --licenses
+        ~/android-sdk/cmdline-tools/cmdline-tools/latest/bin/sdkmanager "platforms;android-30" "build-tools;30.0.3"  # Adjust the version as needed
         # Debugging step to list SDK tools directory
-        ls -l ~/android-sdk/cmdline-tools/tools/bin
+        ls -l ~/android-sdk/cmdline-tools/cmdline-tools/latest/bin
 
     - name: Install dependencies
       run: |
